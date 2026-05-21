@@ -233,7 +233,7 @@ function resolveSchemaInput(schema: SchemaInput): Record<string, SchemaField> {
   return result;
 }
 
-function resolveConfigInput(config: WritenexConfigInput): WritenexConfig {
+export function resolveConfigInput(config: WritenexConfigInput): WritenexConfig {
   return {
     ...config,
     collections: config.collections?.map((coll) => ({
@@ -271,7 +271,12 @@ export function validateConfig(
 ):
   | { success: true; data: WritenexConfig }
   | { success: false; error: z.ZodError<unknown> } {
-  return writenexConfigSchema.safeParse(config) as
+  const resolved =
+    typeof config === "object" && config !== null
+      ? resolveConfigInput(config as WritenexConfigInput)
+      : config;
+
+  return writenexConfigSchema.safeParse(resolved) as
     | { success: true; data: WritenexConfig }
     | { success: false; error: z.ZodError<unknown> };
 }

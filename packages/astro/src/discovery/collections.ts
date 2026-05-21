@@ -144,10 +144,11 @@ export function mergeCollections(
   // Add configured collections first (they take precedence)
   for (const config of configured) {
     const discoveredMatch = discovered.find((d) => d.name === config.name);
+    const path = config.path ?? discoveredMatch?.path ?? join(DEFAULT_CONTENT_DIR, config.name);
 
     result.push({
       name: config.name,
-      path: config.path,
+      path,
       filePattern:
         config.filePattern ??
         discoveredMatch?.filePattern ??

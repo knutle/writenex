@@ -14,11 +14,11 @@
 
 import { existsSync } from "node:fs";
 import { join, resolve } from "node:path";
-import { pathToFileURL } from "node:url";
+import { pathToFileURL, fileURLToPath } from "node:url";
 import { createJiti } from "jiti";
 import type { WritenexConfig } from "@/types";
 import { applyConfigDefaults } from "./defaults";
-import { validateConfig } from "./schema";
+import { validateConfig, resolveConfigInput } from "./schema";
 
 /**
  * Normalize a project root path that may have come from URL.pathname.
@@ -32,7 +32,14 @@ import { validateConfig } from "./schema";
  * and the string is returned unchanged.
  */
 function normalizeProjectRoot(projectRoot: string): string {
-  return projectRoot.replace(/^\/([A-Za-z]:)/, "$1");
+  if (projectRoot.startsWith("file://")) {
+    return fileURLToPath(projectRoot);
+  }
+  let normalized = projectRoot.replace(/^\/([A-Za-z]:)/, "$1");
+  try {
+    normalized = decodeURIComponent(normalized);
+  } catch (_) {}
+  return normalized;
 }
 
 /**
@@ -167,10 +174,9 @@ export async function loadConfig(
     hasConfigFile = true;
 
     try {
-      userConfig = await loadConfigFile(configPath);
+      const rawConfig = await loadConfigFile(configPath);
 
-      // Validate the loaded configuration
-      const validationResult = validateConfig(userConfig);
+      const validationResult = validateConfig(rawConfig);
 
       if (!validationResult.success) {
         const errors = validationResult.error.issues
@@ -178,6 +184,11 @@ export async function loadConfig(
           .join(", ");
         warnings.push(`Configuration validation warnings: ${errors}`);
       }
+
+      userConfig =
+        typeof rawConfig === "object" && rawConfig !== null
+          ? resolveConfigInput(rawConfig as WritenexConfig)
+          : {};
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       warnings.push(`Failed to load config file: ${message}. Using defaults.`);

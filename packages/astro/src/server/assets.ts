@@ -14,7 +14,7 @@
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import type { IncomingMessage, ServerResponse } from "node:http";
-import { extname, join } from "node:path";
+import { extname, isAbsolute, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { MiddlewareContext } from "./middleware";
 
@@ -33,13 +33,18 @@ function getPackageRoot(): string {
 
   // When bundled, import.meta.url points to the dist/index.js file
   // We need to go up one level to get to package root
-  if (currentFile.endsWith("dist/index.js") || currentDir.endsWith("dist/")) {
+  if (
+    currentFile.endsWith("dist/index.js") ||
+    currentFile.endsWith("dist\\index.js") ||
+    currentDir.endsWith("dist/") ||
+    currentDir.endsWith("dist\\")
+  ) {
     return join(currentDir, "..");
   }
 
   // When running from source (development), we're in src/server/
   // Go up 2 levels to get to package root
-  if (currentDir.includes("/src/")) {
+  if (currentDir.includes("/src/") || currentDir.includes("\\src\\")) {
     return join(currentDir, "..", "..");
   }
 
@@ -48,6 +53,11 @@ function getPackageRoot(): string {
 }
 
 const PACKAGE_ROOT = getPackageRoot();
+
+function isPathInside(parentPath: string, targetPath: string): boolean {
+  const relativePath = relative(parentPath, targetPath);
+  return !relativePath.startsWith("..") && !isAbsolute(relativePath);
+}
 
 /**
  * MIME types for static assets
@@ -108,17 +118,23 @@ export async function serveAsset(
 ): Promise<void> {
   // Determine asset location
   // Assets are always in dist/client (pre-bundled by tsup)
-  const distPath = join(PACKAGE_ROOT, "dist", "client", assetPath);
+  const clientDistRoot = resolve(PACKAGE_ROOT, "dist", "client");
+  const filePath = resolve(clientDistRoot, assetPath);
 
-  if (!existsSync(distPath)) {
-    console.error("[writenex] Asset not found:", distPath);
+  if (!isPathInside(clientDistRoot, filePath)) {
+    res.statusCode = 403;
+    res.setHeader("Content-Type", "text/plain");
+    res.end("Forbidden");
+    return;
+  }
+
+  if (!existsSync(filePath)) {
+    console.error("[writenex] Asset not found:", filePath);
     res.statusCode = 404;
     res.setHeader("Content-Type", "text/plain");
     res.end(`Asset not found: ${assetPath}`);
     return;
   }
-
-  const filePath = distPath;
 
   try {
     const content = await readFile(filePath);

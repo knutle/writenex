@@ -38,7 +38,11 @@ function createField<K extends FieldDefinition["fieldKind"]>(
   fieldKind: K,
   config: Omit<Extract<FieldDefinition, { fieldKind: K }>, "fieldKind">
 ): Extract<FieldDefinition, { fieldKind: K }> {
-  return { fieldKind, ...config } as Extract<FieldDefinition, { fieldKind: K }>;
+  const safeConfig = config ?? {};
+  return { fieldKind, ...safeConfig } as Extract<
+    FieldDefinition,
+    { fieldKind: K }
+  >;
 }
 
 export const fields = {

@@ -407,7 +407,7 @@ export function generatePathFromPattern(
   let result = pattern;
 
   for (const [key, value] of Object.entries(tokens)) {
-    result = result.replace(`{${key}}`, value);
+    result = result.replaceAll(`{${key}}`, value);
   }
 
   return result;
@@ -646,7 +646,7 @@ export function resolvePatternTokens(
       resolved[tokenName] = slugifyValue(fmValue);
       continue;
     }
-    if (typeof fmValue === "number") {
+    if (typeof fmValue === "number" || typeof fmValue === "boolean") {
       resolved[tokenName] = fmValue.toString();
       continue;
     }

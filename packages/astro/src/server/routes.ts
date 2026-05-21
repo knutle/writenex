@@ -27,7 +27,7 @@
 
 import { createReadStream, existsSync, statSync } from "node:fs";
 import type { IncomingMessage, ServerResponse } from "node:http";
-import { extname, join } from "node:path";
+import { extname, isAbsolute, join, relative, resolve } from "node:path";
 import {
   ApiBadRequestError,
   ApiMethodNotAllowedError,
@@ -908,12 +908,9 @@ const handleServeImage = async (
     // For flat files (slug.md), images are in a sibling folder with the same name
     let fullImagePath: string;
 
-    if (
-      contentFilePath.endsWith("/index.md") ||
-      contentFilePath.endsWith("/index.mdx")
-    ) {
+    if (/[\/\\]index\.mdx?$/.test(contentFilePath)) {
       // Folder-based: content is at slug/index.md, images are at slug/imagePath
-      const contentFolder = contentFilePath.replace(/\/index\.mdx?$/, "");
+      const contentFolder = contentFilePath.replace(/[\/\\]index\.mdx?$/, "");
       fullImagePath = join(contentFolder, imagePath);
     } else {
       // Flat file: content is at slug.md, images are at slug/imagePath
@@ -921,8 +918,10 @@ const handleServeImage = async (
     }
 
     // Security check: ensure the path is within the content folder
-    const normalizedPath = join(fullImagePath);
-    if (!normalizedPath.startsWith(collectionPath)) {
+    const normalizedPath = resolve(fullImagePath);
+    const normalizedCollectionPath = resolve(collectionPath);
+    const relativeImagePath = relative(normalizedCollectionPath, normalizedPath);
+    if (relativeImagePath.startsWith("..") || isAbsolute(relativeImagePath)) {
       return sendWritenexError(
         res,
         new PathTraversalError(imagePath, collectionPath)
@@ -930,12 +929,12 @@ const handleServeImage = async (
     }
 
     // Check if file exists
-    if (!existsSync(fullImagePath)) {
+    if (!existsSync(normalizedPath)) {
       return sendWritenexError(res, new ImageNotFoundError(imagePath));
     }
 
     // Get file stats
-    const stats = statSync(fullImagePath);
+    const stats = statSync(normalizedPath);
     if (!stats.isFile()) {
       return sendWritenexError(
         res,
@@ -944,7 +943,7 @@ const handleServeImage = async (
     }
 
     // Determine MIME type
-    const ext = extname(fullImagePath).toLowerCase();
+    const ext = extname(normalizedPath).toLowerCase();
     const mimeType = IMAGE_MIME_TYPES[ext] ?? "application/octet-stream";
 
     // Set headers
@@ -953,7 +952,7 @@ const handleServeImage = async (
     res.setHeader("Cache-Control", "public, max-age=3600");
 
     // Stream the file
-    const stream = createReadStream(fullImagePath);
+    const stream = createReadStream(normalizedPath);
     stream.pipe(res);
   } catch (error) {
     const wrappedError = isWritenexError(error)

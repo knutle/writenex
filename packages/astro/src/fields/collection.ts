@@ -31,7 +31,7 @@ export interface SingletonSchemaConfig {
 
 export function collection(config: CollectionSchemaConfig): CollectionConfig {
   const schema: Record<string, import("@/types").SchemaField> = {};
-  for (const [key, fieldDef] of Object.entries(config.schema)) {
+  for (const [key, fieldDef] of Object.entries(config.schema ?? {})) {
     schema[key] = resolveFieldDefinition(fieldDef);
   }
 
@@ -53,7 +53,7 @@ export function singleton(config: SingletonSchemaConfig): {
   images?: ImageConfig;
 } {
   const schema: Record<string, import("@/types").SchemaField> = {};
-  for (const [key, fieldDef] of Object.entries(config.schema)) {
+  for (const [key, fieldDef] of Object.entries(config.schema ?? {})) {
     schema[key] = resolveFieldDefinition(fieldDef);
   }
 

@@ -301,9 +301,11 @@ function detectEnum(
   // Check if it's a good candidate for enum
   if (uniqueValues.length > ENUM_MAX_VALUES) return undefined;
 
-  // Check ratio of unique to total
-  const ratio = uniqueValues.length / totalSamples;
-  if (ratio > ENUM_RATIO_THRESHOLD) return undefined;
+  // The uniqueness-ratio heuristic is only reliable with enough samples.
+  if (totalSamples >= 10) {
+    const ratio = uniqueValues.length / totalSamples;
+    if (ratio > ENUM_RATIO_THRESHOLD) return undefined;
+  }
 
   // Must have at least 2 unique values and appear multiple times
   if (uniqueValues.length < 2) return undefined;

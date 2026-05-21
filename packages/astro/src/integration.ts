@@ -25,6 +25,7 @@
  */
 
 import type { AstroIntegration } from "astro";
+import { fileURLToPath } from "node:url";
 import { loadConfig } from "@/config/loader";
 import { ContentWatcher } from "@/filesystem/watcher";
 import { getCache } from "@/server/cache";
@@ -114,11 +115,7 @@ export default function writenex(options?: WritenexOptions): AstroIntegration {
           return;
         }
 
-        // Store project root
-        // On Windows, URL.pathname produces /C:/Users/... with a leading slash
-        // before the drive letter which breaks path.join and fs.existsSync.
-        // Strip that leading slash so we get a valid Windows path (C:\Users\...).
-        projectRoot = config.root.pathname.replace(/^\/([A-Za-z]:)/, "$1");
+        projectRoot = fileURLToPath(config.root);
 
         // Capture Astro's trailingSlash setting for preview URLs
         astroTrailingSlash = config.trailingSlash ?? "ignore";

@@ -15,7 +15,7 @@
 
 import { existsSync } from "node:fs";
 import { readdir, readFile, stat } from "node:fs/promises";
-import { basename, extname, join, relative } from "node:path";
+import { basename, extname, isAbsolute, join, relative, resolve } from "node:path";
 import matter from "gray-matter";
 import type { ContentItem, ContentSummary } from "@/types";
 
@@ -428,27 +428,36 @@ export function getContentFilePath(
   collectionPath: string,
   contentId: string
 ): string | null {
+  const resolvedCollectionPath = resolve(collectionPath);
+
+  const existingContentPath = (filePath: string): string | null => {
+    const resolvedFilePath = resolve(filePath);
+    const relativePath = relative(resolvedCollectionPath, resolvedFilePath);
+
+    if (relativePath.startsWith("..") || isAbsolute(relativePath)) {
+      return null;
+    }
+
+    return existsSync(resolvedFilePath) ? resolvedFilePath : null;
+  };
+
   // Try folder-based structure first (slug/index.md or slug/index.mdx)
   const indexMdPath = join(collectionPath, contentId, "index.md");
-  if (existsSync(indexMdPath)) {
-    return indexMdPath;
-  }
+  const matchedIndexMdPath = existingContentPath(indexMdPath);
+  if (matchedIndexMdPath) return matchedIndexMdPath;
 
   const indexMdxPath = join(collectionPath, contentId, "index.mdx");
-  if (existsSync(indexMdxPath)) {
-    return indexMdxPath;
-  }
+  const matchedIndexMdxPath = existingContentPath(indexMdxPath);
+  if (matchedIndexMdxPath) return matchedIndexMdxPath;
 
   // Try flat file structure (slug.md or slug.mdx)
   const flatMdPath = join(collectionPath, `${contentId}.md`);
-  if (existsSync(flatMdPath)) {
-    return flatMdPath;
-  }
+  const matchedFlatMdPath = existingContentPath(flatMdPath);
+  if (matchedFlatMdPath) return matchedFlatMdPath;
 
   const flatMdxPath = join(collectionPath, `${contentId}.mdx`);
-  if (existsSync(flatMdxPath)) {
-    return flatMdxPath;
-  }
+  const matchedFlatMdxPath = existingContentPath(flatMdxPath);
+  if (matchedFlatMdxPath) return matchedFlatMdxPath;
 
   return null;
 }

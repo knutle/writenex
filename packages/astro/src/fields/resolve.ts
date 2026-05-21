@@ -40,26 +40,45 @@ const FIELD_KIND_TO_TYPE: Record<string, string> = {
 };
 
 function resolveObjectFields(
-  fields: Record<string, FieldDefinition>
+  fields: Record<string, FieldDefinition> | undefined
 ): Record<string, SchemaField> {
   const result: Record<string, SchemaField> = {};
-  for (const [key, value] of Object.entries(fields)) {
+  for (const [key, value] of Object.entries(fields ?? {})) {
+    if (!isFieldDefinition(value)) continue;
     result[key] = resolveFieldDefinition(value);
   }
   return result;
 }
 
 function resolveBlockTypes(
-  blockTypes: Record<string, FieldDefinition>
+  blockTypes: Record<string, FieldDefinition> | undefined
 ): Record<string, SchemaField> {
   const result: Record<string, SchemaField> = {};
-  for (const [key, value] of Object.entries(blockTypes)) {
+  for (const [key, value] of Object.entries(blockTypes ?? {})) {
+    if (!isFieldDefinition(value)) continue;
     result[key] = resolveFieldDefinition(value);
   }
   return result;
 }
 
+function isFieldDefinition(value: unknown): value is FieldDefinition {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "fieldKind" in value &&
+    typeof (value as { fieldKind?: unknown }).fieldKind === "string"
+  );
+}
+
+function fallbackField(): SchemaField {
+  return { type: "string", required: false };
+}
+
 export function resolveFieldDefinition(field: FieldDefinition): SchemaField {
+  if (!isFieldDefinition(field)) {
+    return fallbackField();
+  }
+
   const type = FIELD_KIND_TO_TYPE[field.fieldKind] ?? "string";
 
   const base: SchemaField = {
@@ -152,7 +171,9 @@ export function resolveFieldDefinition(field: FieldDefinition): SchemaField {
     case "array":
       return {
         ...base,
-        itemField: resolveFieldDefinition(field.itemField),
+        itemField: isFieldDefinition(field.itemField)
+          ? resolveFieldDefinition(field.itemField)
+          : fallbackField(),
         itemLabel: field.itemLabel,
       };
 
@@ -186,7 +207,9 @@ export function resolveFieldDefinition(field: FieldDefinition): SchemaField {
         ...base,
         matchField: field.matchField,
         matchValue: field.matchValue,
-        showField: resolveFieldDefinition(field.showField),
+        showField: isFieldDefinition(field.showField)
+          ? resolveFieldDefinition(field.showField)
+          : fallbackField(),
       };
 
     case "child":

@@ -63,14 +63,15 @@ export function createMiddleware(
     next: Connect.NextFunction
   ) => {
     const url = req.url ?? "";
+    const pathname = url.split("?", 1)[0] ?? "";
 
     // Only handle requests to our base path
-    if (!url.startsWith(basePath)) {
+    if (!pathname.startsWith(basePath)) {
       return next();
     }
 
     // Extract the path after base path
-    const path = url.slice(basePath.length) || "/";
+    const path = pathname.slice(basePath.length) || "/";
 
     try {
       // Handle API routes
