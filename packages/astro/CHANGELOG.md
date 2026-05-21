@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/jaainil/writenex/compare/@imjp/writenex-astro@1.9.0...@imjp/writenex-astro@1.9.1) (2026-05-21)
+
+
+### Bug Fixes
+
+* update dependencies across monorepo ([e42624c](https://github.com/jaainil/writenex/commit/e42624c51d51fa46fcc78991aa105d80f73eadd8))
+
 # [1.9.0](https://github.com/jaainil/writenex/compare/@imjp/writenex-astro@1.8.0...@imjp/writenex-astro@1.9.0) (2026-04-21)
 
 
