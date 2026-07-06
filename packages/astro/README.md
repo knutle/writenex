@@ -1398,7 +1398,7 @@ This error appears on older versions of `@imjp/writenex-astro`. Upgrade to the l
 
 ## Requirements
 
-- Astro 4.x, 5.x, or 6.x
+- Astro 4.x, 5.x, 6.x, or 7.x
 - React 18.x or 19.x
 - Node.js 22.12.0+ (Node 18 and 20 are no longer supported)
 

@@ -1,9 +1,22 @@
-## [1.9.1](https://github.com/jaainil/writenex/compare/@imjp/writenex-astro@1.9.0...@imjp/writenex-astro@1.9.1) (2026-05-21)
+## [1.9.1](https://github.com/jaainil/writenex/compare/@imjp/writenex-astro@1.9.0...@imjp/writenex-astro@1.9.1) (2026-07-06)
 
 
 ### Bug Fixes
 
 * update dependencies across monorepo ([e42624c](https://github.com/jaainil/writenex/commit/e42624c51d51fa46fcc78991aa105d80f73eadd8))
+
+
+### Features
+
+* add Astro v7 support with Vite 8 compatibility ([e42624c](https://github.com/jaainil/writenex/commit/e42624c51d51fa46fcc78991aa105d80f73eadd8))
+* update peer dependencies to support Astro 4.x, 5.x, 6.x, and 7.x
+* upgrade dev dependencies to use Astro v7.3.2 and Vite 8
+
+### Breaking Changes
+
+* Astro v7 requires Vite 8 and Node.js 22.12.0+
+* The Rust compiler is now stricter about invalid HTML syntax (unclosed tags now produce errors)
+* Default `compressHTML` changed from `true` to `'jsx'` for JSX-style whitespace handling
 
 # [1.9.0](https://github.com/jaainil/writenex/compare/@imjp/writenex-astro@1.8.0...@imjp/writenex-astro@1.9.0) (2026-04-21)
 
