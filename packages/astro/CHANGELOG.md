@@ -1,3 +1,22 @@
+## [1.9.2](https://github.com/knutle/writenex/compare/@knutle/writenex-astro@1.9.1...@knutle/writenex-astro@1.9.2) (2026-07-23)
+
+
+### Bug Fixes
+
+* bump writenex-astro package version ([95f64b6](https://github.com/knutle/writenex/commit/95f64b6dc4b5d46966aec236cf0128eb064c3715))
+* disable npm publish during semantic release ([0f67cef](https://github.com/knutle/writenex/commit/0f67ceff6a522ecb03ca92d7620cd1e98600fe0d))
+* fix version bump and revert changelog for incorrect v1.0.0 release ([a933bf0](https://github.com/knutle/writenex/commit/a933bf0904073ccc8412b5ca074fda256bb7dfd0))
+* package version ([e1b3b86](https://github.com/knutle/writenex/commit/e1b3b865e3dda7325f04c742686c5e1936c15b68))
+* revert package version ([085d692](https://github.com/knutle/writenex/commit/085d6927eb1b99c9b32fee77842574471f51d83d))
+* revert tag format for release ([fe709d5](https://github.com/knutle/writenex/commit/fe709d582a60de96132e196f59b8b9cfb5ce96df))
+* update package name to @knutle/writenex-astro ([a145d60](https://github.com/knutle/writenex/commit/a145d60106e1054af960014797c9c49b654a3f71))
+* update repo url references to fork ([262be93](https://github.com/knutle/writenex/commit/262be93ef3fd5b1a340af0024ce173c27bcec30f))
+
+
+### Performance Improvements
+
+* bump writenex-astro version to 2.0.0 ([769d035](https://github.com/knutle/writenex/commit/769d0352aaf5b8498a70258d339e2a01274a19f5))
+
 ## [1.9.1](https://github.com/jaainil/writenex/compare/@imjp/writenex-astro@1.9.0...@imjp/writenex-astro@1.9.1) (2026-07-06)
 
 
