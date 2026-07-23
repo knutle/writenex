@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/knutle/writenex/compare/@knutle/writenex-astro@2.0.2...@knutle/writenex-astro@2.0.3) (2026-07-23)
+
+
+### Bug Fixes
+
+* update repo url in npm package config ([2dd7433](https://github.com/knutle/writenex/commit/2dd7433052e6005822c53f1806e658dca1b404c1))
+
 ## [2.0.2](https://github.com/knutle/writenex/compare/@knutle/writenex-astro@2.0.1...@knutle/writenex-astro@2.0.2) (2026-07-23)
 
 
