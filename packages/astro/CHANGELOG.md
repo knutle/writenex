@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/knutle/writenex/compare/@knutle/writenex-astro@2.0.1...@knutle/writenex-astro@2.0.2) (2026-07-23)
+
+
+### Bug Fixes
+
+* target es2022 and node22 during tsup build ([054b012](https://github.com/knutle/writenex/commit/054b01215edbb94d3da0b1276b72161638f12477))
+
 ## [2.0.1](https://github.com/knutle/writenex/compare/@knutle/writenex-astro@2.0.0...@knutle/writenex-astro@2.0.1) (2026-07-23)
 
 
