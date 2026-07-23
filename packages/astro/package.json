@@ -61,7 +61,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/knutle/writenex.git",
+    "url": "git+https://github.com/knutle/writenex.git",
     "directory": "packages/astro"
   },
   "homepage": "https://github.com/knutle/writenex",
