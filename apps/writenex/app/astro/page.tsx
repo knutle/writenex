@@ -1,5 +1,5 @@
 /**
- * @fileoverview Landing page for @imjp/writenex-astro integration
+ * @fileoverview Landing page for @knutle/writenex-astro integration
  *
  * Comprehensive documentation and marketing page for the Astro visual editor integration.
  * Showcases features, installation, configuration, Fields API, and usage examples.
@@ -40,7 +40,7 @@ import { LandingFooter, LandingHeader } from "@/app/components/landing";
 import { createBreadcrumbSchema } from "@/app/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "@imjp/writenex-astro - Visual Editor for Astro Content Collections",
+  title: "@knutle/writenex-astro - Visual Editor for Astro Content Collections",
   description:
     "WYSIWYG editor for Astro content collections with Fields API. 25+ field types, zero config, auto-discovery, image upload, version history.",
   keywords: [
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     canonical: "https://writenex.com/astro",
   },
   openGraph: {
-    title: "@imjp/writenex-astro - Visual Editor for Astro Content Collections",
+    title: "@knutle/writenex-astro - Visual Editor for Astro Content Collections",
     description:
       "WYSIWYG editor for Astro content collections with Fields API. 25+ field types, zero config, auto-discovery.",
     type: "website",
@@ -240,7 +240,7 @@ function HeroSection(): React.ReactElement {
 
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <a
-            href="https://www.npmjs.com/package/@imjp/writenex-astro"
+            href="https://www.npmjs.com/package/@knutle/writenex-astro"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-brand-500 hover:bg-brand-600 inline-flex items-center gap-2 rounded-lg px-5 py-3 text-lg font-normal text-white transition-colors"
@@ -290,7 +290,7 @@ function QuickStartSection(): React.ReactElement {
               <span className="text-zinc-500"># Install the integration</span>
               {"\n"}
               <span className="text-green-400">npx</span> astro add
-              @imjp/writenex-astro{"\n\n"}
+              @knutle/writenex-astro{"\n\n"}
               <span className="text-zinc-500"># Start your dev server</span>
               {"\n"}
               <span className="text-green-400">astro</span> dev{"\n\n"}
@@ -393,7 +393,7 @@ function FieldsAPIIntroSection(): React.ReactElement {
               collection, singleton, fields {"}"}{" "}
               <span className="text-blue-400">from</span>{" "}
               <span className="text-green-400">
-                "@imjp/writenex-astro/config"
+                "@knutle/writenex-astro/config"
               </span>
               ;{"\n\n"}
               <span className="text-zinc-500">
@@ -404,7 +404,7 @@ function FieldsAPIIntroSection(): React.ReactElement {
               collection, singleton, fields {"}"}{" "}
               <span className="text-blue-400">from</span>{" "}
               <span className="text-green-400">
-                "@imjp/writenex-astro/config"
+                "@knutle/writenex-astro/config"
               </span>
               ;
             </code>
@@ -416,7 +416,7 @@ function FieldsAPIIntroSection(): React.ReactElement {
 }
 
 async function FieldsAPIExampleSection(): Promise<React.ReactElement> {
-  const basicExample = `import { defineConfig, collection, fields } from "@imjp/writenex-astro/config";
+  const basicExample = `import { defineConfig, collection, fields } from "@knutle/writenex-astro/config";
 
 export default defineConfig({
   collections: [
@@ -1104,7 +1104,7 @@ async function MigrationSection(): Promise<React.ReactElement> {
   ],
 });`;
 
-  const afterCode = `import { defineConfig, collection, fields } from "@imjp/writenex-astro/config";
+  const afterCode = `import { defineConfig, collection, fields } from "@knutle/writenex-astro/config";
 
 export default defineConfig({
   collections: [
@@ -1325,7 +1325,7 @@ function SecuritySection(): React.ReactElement {
             Production Safe
           </h2>
           <p className="mb-4 text-amber-800 dark:text-amber-300">
-            @imjp/writenex-astro is disabled by default in production builds.
+            @knutle/writenex-astro is disabled by default in production builds.
             The editor only runs during development to prevent accidental
             exposure of filesystem write access.
           </p>
@@ -1350,7 +1350,7 @@ function CTASection(): React.ReactElement {
           Ready to Get Started?
         </h2>
         <p className="mb-8 text-lg text-zinc-600 dark:text-zinc-400">
-          Add @imjp/writenex-astro to your project and start editing visually.
+          Add @knutle/writenex-astro to your project and start editing visually.
         </p>
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <a
@@ -1404,7 +1404,7 @@ function RelatedSection(): React.ReactElement {
 export default async function AstroPage(): Promise<React.ReactElement> {
   const breadcrumbSchema = createBreadcrumbSchema([
     { name: "Home", url: "https://writenex.com" },
-    { name: "@imjp/writenex-astro", url: "https://writenex.com/astro" },
+    { name: "@knutle/writenex-astro", url: "https://writenex.com/astro" },
   ]);
 
   const fieldsApiExample = await FieldsAPIExampleSection();

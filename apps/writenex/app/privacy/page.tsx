@@ -2,7 +2,7 @@
  * @fileoverview Privacy Policy page for Writenex
  *
  * This page explains Writenex's privacy practices in clear, simple terms.
- * Covers both Writenex Editor and @imjp/writenex-astro package.
+ * Covers both Writenex Editor and @knutle/writenex-astro package.
  *
  * ## Key Points:
  * - No data collection - everything stays local (browser/filesystem)
@@ -101,7 +101,7 @@ export default function PrivacyPolicyPage(): React.ReactElement {
               <strong>Your content stays local.</strong> Writenex Editor stores
               data in your browser.{" "}
               <code className="rounded bg-zinc-100 px-2 py-1 font-mono text-sm text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
-                @imjp/writenex-astro
+                @knutle/writenex-astro
               </code>{" "}
               stores data in your project files.
             </li>
@@ -143,10 +143,10 @@ export default function PrivacyPolicyPage(): React.ReactElement {
             access to it, and it is never transmitted to any Writenex server.
           </p>
 
-          <h3>@imjp/writenex-astro</h3>
+          <h3>@knutle/writenex-astro</h3>
 
           <p>
-            @imjp/writenex-astro is an npm package that runs entirely on your
+            @knutle/writenex-astro is an npm package that runs entirely on your
             local machine. It stores:
           </p>
 
@@ -193,7 +193,7 @@ export default function PrivacyPolicyPage(): React.ReactElement {
               browser settings
             </li>
             <li>
-              <strong>@imjp/writenex-astro:</strong> Delete files from your
+              <strong>@knutle/writenex-astro:</strong> Delete files from your
               project directory or remove the{" "}
               <code className="rounded bg-zinc-100 px-2 py-1 font-mono text-sm text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
                 .writenex
@@ -240,7 +240,7 @@ export default function PrivacyPolicyPage(): React.ReactElement {
 
           <p>
             <code className="rounded bg-zinc-100 px-2 py-1 font-mono text-sm text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
-              @imjp/writenex-astro
+              @knutle/writenex-astro
             </code>{" "}
             is distributed via npm. When installing or using the package:
           </p>
@@ -309,7 +309,7 @@ export default function PrivacyPolicyPage(): React.ReactElement {
             permissions you grant to them.
           </p>
 
-          <h3>@imjp/writenex-astro</h3>
+          <h3>@knutle/writenex-astro</h3>
 
           <p>Security considerations for the npm package include:</p>
 
@@ -332,7 +332,7 @@ export default function PrivacyPolicyPage(): React.ReactElement {
           <p>
             <strong>Important:</strong> Do not enable{" "}
             <code className="rounded bg-zinc-100 px-2 py-1 font-mono text-sm text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
-              @imjp/writenex-astro
+              @knutle/writenex-astro
             </code>{" "}
             in production environments without proper authentication, as it
             provides write access to your filesystem.

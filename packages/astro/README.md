@@ -1,10 +1,10 @@
-# @imjp/writenex-astro
+# @knutle/writenex-astro
 
 Visual editor for Astro content collections - WYSIWYG editing for your Astro site.
 
 ## Overview
 
-**@imjp/writenex-astro** is an Astro integration that provides a WYSIWYG editor interface for managing your content collections. It runs alongside your Astro dev server and provides direct filesystem access to your content.
+**@knutle/writenex-astro** is an Astro integration that provides a WYSIWYG editor interface for managing your content collections. It runs alongside your Astro dev server and provides direct filesystem access to your content.
 
 ### Key Features
 
@@ -27,7 +27,7 @@ Visual editor for Astro content collections - WYSIWYG editing for your Astro sit
 ### 1. Install the integration
 
 ```bash
-npx astro add @imjp/writenex-astro
+npx astro add @knutle/writenex-astro
 ```
 
 This will install the package and automatically configure your `astro.config.mjs`.
@@ -50,13 +50,13 @@ If you prefer to install manually:
 
 ```bash
 # npm
-npm install @imjp/writenex-astro
+npm install @knutle/writenex-astro
 
 # pnpm
-pnpm add @imjp/writenex-astro
+pnpm add @knutle/writenex-astro
 
 # yarn
-yarn add @imjp/writenex-astro
+yarn add @knutle/writenex-astro
 ```
 
 Then add the integration to your config:
@@ -64,7 +64,7 @@ Then add the integration to your config:
 ```typescript
 // astro.config.mjs
 import { defineConfig } from "astro/config";
-import writenex from "@imjp/writenex-astro";
+import writenex from "@knutle/writenex-astro";
 
 export default defineConfig({
   integrations: [writenex()],
@@ -83,7 +83,7 @@ Create `writenex.config.ts` in your project root for full control:
 
 ```typescript
 // writenex.config.ts
-import { defineConfig, collection, fields } from "@imjp/writenex-astro";
+import { defineConfig, collection, fields } from "@knutle/writenex-astro";
 
 export default defineConfig({
   collections: [
@@ -151,9 +151,9 @@ The Fields API provides a TypeScript-first builder pattern for defining content 
 ### Imports
 
 ```typescript
-import { defineConfig, collection, singleton, fields } from "@imjp/writenex-astro/config";
+import { defineConfig, collection, singleton, fields } from "@knutle/writenex-astro/config";
 // or
-import { defineConfig, collection, singleton, fields } from "@imjp/writenex-astro/config";
+import { defineConfig, collection, singleton, fields } from "@knutle/writenex-astro/config";
 ```
 
 ### collection() vs singleton()
@@ -978,7 +978,7 @@ export default defineConfig({
 ### After (Fields API)
 
 ```typescript
-import { defineConfig, collection, fields } from "@imjp/writenex-astro/config";
+import { defineConfig, collection, fields } from "@knutle/writenex-astro/config";
 
 export default defineConfig({
   collections: [
@@ -1089,7 +1089,7 @@ Writenex automatically creates shadow copies of your content before each save, p
 
 ```typescript
 // writenex.config.ts
-import { defineConfig } from "@imjp/writenex-astro";
+import { defineConfig } from "@knutle/writenex-astro";
 
 export default defineConfig({
   versionHistory: {
@@ -1176,7 +1176,7 @@ import {
   saveVersionWithConfig,
   getVersionsWithConfig,
   restoreVersionWithConfig,
-} from "@imjp/writenex-astro";
+} from "@knutle/writenex-astro";
 
 // Save a version with label
 await saveVersionWithConfig(
@@ -1364,7 +1364,7 @@ writenex({
   - collections.0.schema.title.type: Invalid option: expected one of "string"|"number"|...
 ```
 
-This error appears on older versions of `@imjp/writenex-astro`. Upgrade to the latest version — `defineConfig` now auto-resolves `fields.*()` objects in both raw collection objects and `collection()` wrappers.
+This error appears on older versions of `@knutle/writenex-astro`. Upgrade to the latest version — `defineConfig` now auto-resolves `fields.*()` objects in both raw collection objects and `collection()` wrappers.
 
 ### Field types not rendering correctly
 

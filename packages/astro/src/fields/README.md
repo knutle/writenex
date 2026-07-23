@@ -17,7 +17,7 @@ The Fields API provides a fluent, type-safe way to define the schema for your co
 
 ```typescript
 // writenex.config.ts
-import { defineConfig, collection, fields } from "@imjp/writenex-astro/config";
+import { defineConfig, collection, fields } from "@knutle/writenex-astro/config";
 
 export default defineConfig({
   collections: [
@@ -37,12 +37,12 @@ export default defineConfig({
 
 ## Installation
 
-The Fields API is included with `@imjp/writenex-astro`. Import it from:
+The Fields API is included with `@knutle/writenex-astro`. Import it from:
 
 ```typescript
-import { fields, collection, singleton, defineConfig } from "@imjp/writenex-astro/config";
+import { fields, collection, singleton, defineConfig } from "@knutle/writenex-astro/config";
 // or
-import { fields, collection, singleton, defineConfig } from "@imjp/writenex-astro/config";
+import { fields, collection, singleton, defineConfig } from "@knutle/writenex-astro/config";
 ```
 
 ## Field Types
@@ -903,7 +903,7 @@ export default defineConfig({
 ### After (Fields API)
 
 ```typescript
-import { defineConfig, collection, fields } from "@imjp/writenex-astro/config";
+import { defineConfig, collection, fields } from "@knutle/writenex-astro/config";
 
 export default defineConfig({
   collections: [
@@ -941,7 +941,7 @@ export default defineConfig({
 
 ### `Invalid configuration: type: Invalid option`
 
-If you see this on an older version of `@imjp/writenex-astro`:
+If you see this on an older version of `@knutle/writenex-astro`:
 
 ```
 [writenex] Invalid configuration:
@@ -987,13 +987,13 @@ Upgrade to the latest version — `defineConfig` now auto-resolves `fields.*()` 
 ### Exports
 
 ```typescript
-// From @imjp/writenex-astro/config or @writenex/astro/config
+// From @knutle/writenex-astro/config or @writenex/astro/config
 import {
   fields,           // Field builder object
   collection,      // Multi-item content helper
   singleton,       // Single-item content helper
   defineConfig,    // Config definition function
-} from "@imjp/writenex-astro/config";
+} from "@knutle/writenex-astro/config";
 ```
 
 ### Field Builder Methods

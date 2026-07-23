@@ -11,7 +11,7 @@ This major release includes significant improvements and breaking changes for be
 | **Product**                          | **Description**                                                      |
 | ------------------------------------ | -------------------------------------------------------------------- |
 | [Writenex Editor](./apps/writenex/)  | WYSIWYG Markdown editor that works offline and keeps your data local |
-| [@imjp/writenex-astro](./packages/astro/) | WYSIWYG Markdown editor for Astro Content Collections                |
+| [@knutle/writenex-astro](./packages/astro/) | WYSIWYG Markdown editor for Astro Content Collections                |
 
 ## Project Structure
 
@@ -22,7 +22,7 @@ writenex/
 │       └── lib/               # Core modules (db, editor, hooks, store, ui, utils)
 │
 ├── packages/
-│   ├── astro/                 # @imjp/writenex-astro - Astro integration
+│   ├── astro/                 # @knutle/writenex-astro - Astro integration
 │   └── config/                # Shared configurations
 │       ├── typescript/        # @writenex/tsconfig
 │       └── eslint/            # @writenex/eslint-config
@@ -76,7 +76,7 @@ pnpm clean
 pnpm dev:writenex
 pnpm build:writenex
 
-# @imjp/writenex-astro
+# @knutle/writenex-astro
 pnpm build:astro
 ```
 

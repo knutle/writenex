@@ -1,5 +1,5 @@
 {
-  "name": "@imjp/writenex-astro",
+  "name": "@knutle/writenex-astro",
   "version": "2.0.1",
   "description": "Visual editor for Astro content collections - WYSIWYG editing for your Astro site.",
   "type": "module",
