@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/knutle/writenex/compare/@knutle/writenex-astro@2.0.0...@knutle/writenex-astro@2.0.1) (2026-07-23)
+
+
+### Bug Fixes
+
+* publish npm package during workflow ([745963f](https://github.com/knutle/writenex/commit/745963f477bcbb1d277c91b4faf634774faf018b))
+
 # [2.0.0](https://github.com/knutle/writenex/compare/@knutle/writenex-astro@1.9.1...@knutle/writenex-astro@2.0.0) (2026-07-23)
 
 
