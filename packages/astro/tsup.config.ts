@@ -91,7 +91,7 @@ export default defineConfig([
     },
     outDir: "dist",
     format: ["esm"],
-    target: "node18",
+    target: "node22",
     platform: "node",
     sourcemap: true,
     clean: true,
@@ -117,7 +117,7 @@ export default defineConfig([
     },
     outDir: "dist",
     format: ["esm"],
-    target: "es2020",
+    target: "es2022",
     platform: "browser",
     splitting: false, // Disable splitting to avoid chunk file resolution issues
     sourcemap: true,
