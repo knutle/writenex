@@ -61,12 +61,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jaainil/writenex.git",
+    "url": "https://github.com/knutle/writenex.git",
     "directory": "packages/astro"
   },
-  "homepage": "https://github.com/jaainil/writenex",
+  "homepage": "https://github.com/knutle/writenex",
   "bugs": {
-    "url": "https://github.com/jaainil/writenex/issues"
+    "url": "https://github.com/knutle/writenex/issues"
   },
   "publishConfig": {
     "access": "public"
